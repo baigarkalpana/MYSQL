@@ -1,0 +1,359 @@
+1.
+
+mysql> select first_name as FirstName, last_name as LastName from Emp_Info;
++-----------+----------+
+| FirstName | LastName |
++-----------+----------+
+| Kalpana   | Baigar   |
+| Sony      | Baigar   |
+| Anjali    | Bankar   |
+| Revati    | Pawar    |
+| Megha     | Taru     |
++-----------+----------+
+5 rows in set (1.18 sec)
+
+2.
+
+mysql> select distinct dept_id from emp_info;
++---------+
+| dept_id |
++---------+
+|      30 |
+|      60 |
+|      20 |
+|      40 |
+|      50 |
+|     100 |
+|      10 |
++---------+
+7 rows in set (0.00 sec)
+
+3.
+
+mysql> select * from Emp_Info order by first_name desc;
++------+------------+-----------+--------+------+
+| eid  | first_name | last_name | salary | pf   |
++------+------------+-----------+--------+------+
+|    2 | Sony       | Baigar    |  20000 | 1500 |
+|    4 | Revati     | Pawar     |  19000 | 1100 |
+|    5 | Megha      | Taru      |  11000 | 1100 |
+|    1 | Kalpana    | Baigar    |  17000 | 1200 |
+|    3 | Anjali     | Bankar    |  15000 | 1000 |
++------+------------+-----------+--------+------+
+5 rows in set (0.34 sec)
+
+
+4.
+
+mysql> select first_name ,last_name ,salary,salary* 0.15 from Emp_Info;
++------------+-----------+--------+--------------+
+| first_name | last_name | salary | salary* 0.15 |
++------------+-----------+--------+--------------+
+| Kalpana    | Baigar    |  17000 |      2550.00 |
+| Sony       | Baigar    |  20000 |      3000.00 |
+| Anjali     | Bankar    |  15000 |      2250.00 |
+| Revati     | Pawar     |  19000 |      2850.00 |
+| Megha      | Taru      |  11000 |      1650.00 |
++------------+-----------+--------+--------------+
+5 rows in set (0.17 sec)
+
+
+5.
+select first_name,last_name,salary from Emp_Info order by salary;
++------------+-----------+--------+
+| first_name | last_name | salary |
++------------+-----------+--------+
+| Megha      | Taru      |  11000 |
+| Anjali     | Bankar    |  15000 |
+| Kalpana    | Baigar    |  17000 |
+| Revati     | Pawar     |  19000 |
+| Sony       | Baigar    |  20000 |
++------------+-----------+--------+
+5 rows in set (0.08 sec)
+
+6.
+
+mysql> select sum(salary) from Emp_Info;
++-------------+
+| sum(salary) |
++-------------+
+|       82000 |
++-------------+
+1 row in set (0.19 sec)
+
+7.
+mysql> select max(salary),min(salary) from Emp_Info;
++-------------+-------------+
+| max(salary) | min(salary) |
++-------------+-------------+
+|       20000 |       11000 |
++-------------+-------------+
+1 row in set (0.09 sec)
+
+8.
+
+
+mysql> select avg(salary),count(*) from Emp_Info;
++-------------+----------+
+| avg(salary) | count(*) |
++-------------+----------+
+|  16400.0000 |        5 |
++-------------+----------+
+
+
+
+9.
+
+mysql> select count(*) from Emp_Info;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+
+
+
+10.
+
+
+mysql> select count(distinct job) from Emp_Info;
++---------------------+
+| count(distinct job) |
++---------------------+
+|                   3 |
++---------------------+
+
+
+11.
+
+
+mysql> select * from Emp_Info limit 10;
++------+------------+-----------+--------+------+-----------+
+| eid  | first_name | last_name | salary | pf   | job       |
++------+------------+-----------+--------+------+-----------+
+|    1 | Kalpana    | Baigar    |  17000 | 1200 | developer |
+|    2 | Sony       | Baigar    |  20000 | 1500 | Tester    |
+|    3 | Anjali     | Bankar    |  15000 | 1000 | Developer |
+|    4 | Revati     | Pawar     |  19000 | 1100 | Tester    |
+|    5 | Megha      | Taru      |  11000 | 1100 | Design    |
+|    6 | neha       | pule      |  23000 | 1200 | design    |
+|    7 | dipali     | patil     |  43000 | 2200 | web       |
+|    8 | omkar      | dhorgude  |  50000 | 2300 | Developer |
+|    9 | kb         | patil     |  43000 | 2200 | web       |
+|   10 | priya      | potdar    |  25000 | 2300 | tester    |
++------+------------+-----------+--------+------+-----------+
+10 rows in set (0.00 sec)
+
+
+
+mysql> select * from Emp_Info limit 0,10;
++------+------------+-----------+--------+------+-----------+
+| eid  | first_name | last_name | salary | pf   | job       |
++------+------------+-----------+--------+------+-----------+
+|    1 | Kalpana    | Baigar    |  17000 | 1200 | developer |
+|    2 | Sony       | Baigar    |  20000 | 1500 | Tester    |
+|    3 | Anjali     | Bankar    |  15000 | 1000 | Developer |
+|    4 | Revati     | Pawar     |  19000 | 1100 | Tester    |
+|    5 | Megha      | Taru      |  11000 | 1100 | Design    |
+|    6 | neha       | pule      |  23000 | 1200 | design    |
+|    7 | dipali     | patil     |  43000 | 2200 | web       |
+|    8 | omkar      | dhorgude  |  50000 | 2300 | Developer |
+|    9 | kb         | patil     |  43000 | 2200 | web       |
+|   10 | priya      | potdar    |  25000 | 2300 | tester    |
++------+------------+-----------+--------+------+-----------+
+10 rows in set (0.04 sec)
+
+
+12.
+
+
+mysql> select concat(first_name,last_name) as FullName, salary from Emp_Info where salary  not between 10000 and 15000;
++----------------+--------+
+| FullName       | salary |
++----------------+--------+
+| KalpanaBaigar  |  17000 |
+| SonyBaigar     |  20000 |
+| RevatiPawar    |  19000 |
+| nehapule       |  23000 |
+| dipalipatil    |  43000 |
+| omkardhorgude  |  50000 |
+| kbpatil        |  43000 |
+| priyapotdar    |  25000 |
+| karishmamulani |  51100 |
+| prajktalandge  |  69000 |
++----------------+--------+
+10 rows in set (0.00 sec)
+
+
+13.
+
+mysql> select first_name ,last_name,dept_id from emp_info where dept_id in(30,100) order by dept_id asc;
++------------+-----------+---------+
+| first_name | last_name | dept_id |
++------------+-----------+---------+
+| Kalpana    | Baigar    |      30 |
+| Revati     | Pawar     |      30 |
+| Megha      | Taru      |      30 |
+| karishma   | mulani    |      30 |
+| omkar      | dhorgude  |     100 |
+| kb         | patil     |     100 |
+| prajkta    | landge    |     100 |
++------------+-----------+---------+
+7 rows in set (0.09 sec)
+
+
+mysql> select first_name ,last_name,dept_id from emp_info where (dept_id= 30 or dept_id=100) order by dept_id asc;
++------------+-----------+---------+
+| first_name | last_name | dept_id |
++------------+-----------+---------+
+| Kalpana    | Baigar    |      30 |
+| Revati     | Pawar     |      30 |
+| Megha      | Taru      |      30 |
+| karishma   | mulani    |      30 |
+| omkar      | dhorgude  |     100 |
+| kb         | patil     |     100 |
+| prajkta    | landge    |     100 |
++------------+-----------+---------+
+7 rows in set (0.02 sec)
+
+
+14.
+mysql> select first_name,last_name,salary from emp_info where salary not between 10000 and 15000 AND dept_id in (30,100);
++------------+-----------+--------+
+| first_name | last_name | salary |
++------------+-----------+--------+
+| Kalpana    | Baigar    |  17000 |
+| Revati     | Pawar     |  19000 |
+| omkar      | dhorgude  |  50000 |
+| kb         | patil     |  43000 |
+| karishma   | mulani    |  51100 |
+| prajkta    | landge    |  69000 |
++------------+-----------+--------+
+
+
+
+15.
+
+mysql> select first_name ,last_name,hire_date from emp_info where year(hire_date) like'%1987';
++------------+-----------+------------+
+| first_name | last_name | hire_date  |
++------------+-----------+------------+
+| Sony       | Baigar    | 1987-01-23 |
+| neha       | pule      | 1987-02-26 |
+| omkar      | dhorgude  | 1987-05-10 |
+| priya      | potdar    | 1987-03-17 |
++------------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select first_name ,last_name,hire_date from emp_info where year(hire_date) in (1987);
++------------+-----------+------------+
+| first_name | last_name | hire_date  |
++------------+-----------+------------+
+| Sony       | Baigar    | 1987-01-23 |
+| neha       | pule      | 1987-02-26 |
+| omkar      | dhorgude  | 1987-05-10 |
+| priya      | potdar    | 1987-03-17 |
++------------+-----------+------------+
+4 rows in set (0.00 sec)
+
+
+16.
+
+
+mysql> select first_name ,last_name from emp_info  where first_name like '%p%' and first_name like '%k%';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Kalpana    | Baigar    |
+| prajkta    | landge    |
++------------+-----------+
+2 rows in set (0.00 sec)
+
+
+17.
+
+
+mysql> select last_name,job,salary from emp_info where job in('developer','web') and salary not in(17000,69000,23000);
++-----------+-----------+--------+
+| last_name | job       | salary |
++-----------+-----------+--------+
+| Bankar    | Developer |  15000 |
+| patil     | web       |  43000 |
+| dhorgude  | Developer |  50000 |
+| patil     | web       |  43000 |
++-----------+-----------+--------+
+4 rows in set (0.00 sec)
+
+18.
+
+
+mysql> select last_name from emp_info where first_name like '______';
++-----------+
+| last_name |
++-----------+
+| Bankar    |
+| Pawar     |
+| patil     |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> select first_name,last_name from emp_info where first_name like '______';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Anjali     | Bankar    |
+| Revati     | Pawar     |
+| dipali     | patil     |
++------------+-----------+
+3 rows in set (0.00 sec)
+
+
+19.
+
+
+mysql> select last_name from emp_info where first_name like '__e%';
++-----------+
+| last_name |
++-----------+
+| shinde    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select first_name,last_name from emp_info where first_name like '__e%';
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Deepali    | shinde    |
++------------+-----------+
+1 row in set (0.00 sec)
+
+
+20.
+
+
+mysql> select distinct job from emp_info;
++------------+
+| job        |
++------------+
+| developer  |
+| Tester     |
+| Design     |
+| web        |
+| medical    |
+| operations |
++------------+
+
+
+
+21.
+
+mysql> select * from emp_info where last_name in('Baigar','Bankar','mulani');
++------+------------+-----------+--------+------+-----------+---------+------------+
+| eid  | first_name | last_name | salary | pf   | job       | dept_id | hire_date  |
++------+------------+-----------+--------+------+-----------+---------+------------+
+|    1 | Kalpana    | Baigar    |  17000 | 1200 | developer |      30 | 2011-03-23 |
+|    2 | Sony       | Baigar    |  20000 | 1500 | Tester    |      60 | 1987-01-23 |
+|    3 | Anjali     | Bankar    |  15000 | 1000 | Developer |      20 | 1989-03-27 |
+|   11 | karishma   | mulani    |  51100 | 1200 | medical   |      30 | 2022-06-11 |
++------+------------+-----------+--------+------+-----------+---------+------------+
+4 rows in set (0.00 sec)

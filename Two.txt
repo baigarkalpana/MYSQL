@@ -1,0 +1,261 @@
+1.
+
+ insert into department(DERPARTMENT_ID,DEPARTMENT_NAME,MANAGER_ID,LOCATION_ID) VALUES(10,'Administration',200,1700);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into department VALUES(20,'Marketing',201,1800);
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into department VALUES(30,'Purchasing',114,1700),(40,'Human Resource',203,2400),(50,'Shipping',1221,1500),(60,'IT',103,1400),(70,'Public Realations',204,2700),(80,'Sales',154,2500);
+Query OK, 6 rows affected (0.23 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from department;
++----------------+-------------------+------------+-------------+
+| DERPARTMENT_ID | DEPARTMENT_NAME   | MANAGER_ID | LOCATION_ID |
++----------------+-------------------+------------+-------------+
+|             10 | Administration    |        200 |        1700 |
+|             20 | Marketing         |        201 |        1800 |
+|             30 | Purchasing        |        114 |        1700 |
+|             40 | Human Resource    |        203 |        2400 |
+|             50 | Shipping          |       1221 |        1500 |
+|             60 | IT                |        103 |        1400 |
+|             70 | Public Realations |        204 |        2700 |
+|             80 | Sales             |        154 |        2500 |
++----------------+-------------------+------------+-------------+
+8 rows in set (0.00 sec)
+
+
+2.
+
+insert into department VALUES(90,'Purchasing',100,3400),(100,'Human Resource',200,2500),(110,'Shipping',1451,1780);
+Query OK, 3 rows affected (0.15 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+3.
+
+ create table jobs (job_id varchar(20) unique,job_title varchar(20),min_salary int,max_salary int);
+Query OK, 0 rows affected (0.62 sec)
+
+mysql> desc jobs;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| job_id     | varchar(20) | YES  | UNI | NULL    |       |
+| job_title  | varchar(20) | YES  |     | NULL    |       |
+| min_salary | int         | YES  |     | NULL    |       |
+| max_salary | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into jobs (job_id,job_title,min_salary,max_salary) values('AD_PRES','President',20000,40000);
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into jobs values('AD_VP','Administration Vice President',15000,30000),('AD_ASST','Administration Assistant',3000,6000),('FI_MGR','Finance Manager',8200,16000),('FI_ACCOUNT','Developer',4200,9000),('AC_MGR','Accounting Manager',8200,16000),('AC_ACCOUNT','Public Accountant',4200,9000),('SA_MAN','Sales Manager',10000,20000);
+ERROR 1406 (22001): Data too long for column 'job_title' at row 1
+mysql> alter table jobs modify job_title varchar(30);
+Query OK, 0 rows affected (0.27 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into jobs values('AD_VP','Administration Vice President',15000,30000),('AD_ASST','Administration Assistant',3000,6000),('FI_MGR','Finance Manager',8200,16000),('FI_ACCOUNT','Developer',4200,9000),('AC_MGR','Accounting Manager',8200,16000),('AC_ACCOUNT','Public Accountant',4200,9000),('SA_MAN','Sales Manager',10000,20000);
+Query OK, 7 rows affected (0.18 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from jobs;
++------------+-------------------------------+------------+------------+
+| job_id     | job_title                     | min_salary | max_salary |
++------------+-------------------------------+------------+------------+
+| AD_PRES    | President                     |      20000 |      40000 |
+| AD_VP      | Administration Vice President |      15000 |      30000 |
+| AD_ASST    | Administration Assistant      |       3000 |       6000 |
+| FI_MGR     | Finance Manager               |       8200 |      16000 |
+| FI_ACCOUNT | Developer                     |       4200 |       9000 |
+| AC_MGR     | Accounting Manager            |       8200 |      16000 |
+| AC_ACCOUNT | Public Accountant             |       4200 |       9000 |
+| SA_MAN     | Sales Manager                 |      10000 |      20000 |
++------------+-------------------------------+------------+------------+
+8 rows in set (0.00 sec)
+
+
+4.
+
+create table emp(emp_id int,emp_name varchar(10),salary float);
+Query OK, 0 rows affected (1.08 sec)
+
+mysql> insert into emp values(1,'kalpana',2000),(2,'sony',3000);
+Query OK, 2 rows affected (0.14 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> update emp set salary=salary+(salary*10/100);
+Query OK, 2 rows affected (0.24 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+--------+
+| emp_id | emp_name | salary |
++--------+----------+--------+
+|      1 | kalpana  |   2200 |
+|      2 | sony     |   3300 |
++--------+----------+--------+
+2 rows in set (0.00 sec)
+
+
+
+
+5.
+
+mysql> insert into emp values(1,'kalpana','baigarkalpana@gmail.com',10,2,'Developer'),(2,'sony','sonyb@gmail.com',20,3,'Tester');
+Query OK, 2 rows affected (0.36 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into emp values(3,'prajkta','prajktaua@gmail.com',30,4,'Teacher'),(4,'priya','priyapotdar@gmail.com',40,5,'Devloper');
+Query OK, 2 rows affected (0.16 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+-------------------------+---------------+-----------+-------------+
+| emp_id | emp_name | email                   | department_id | comission | depart_name |
++--------+----------+-------------------------+---------------+-----------+-------------+
+|      1 | kalpana  | baigarkalpana@gmail.com |            10 |         2 | Developer   |
+|      2 | sony     | sonyb@gmail.com         |            20 |         3 | Tester      |
+|      3 | prajkta  | prajktaua@gmail.com     |            30 |         4 | Teacher     |
+|      4 | priya    | priyapotdar@gmail.com   |            40 |         5 | Devloper    |
++--------+----------+-------------------------+---------------+-----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update emp set email="not_available" and comission=0.10;
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'not_available'
+mysql> update emp set email="not_available" ;
+Query OK, 4 rows affected (0.17 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+---------------+---------------+-----------+-------------+
+| emp_id | emp_name | email         | department_id | comission | depart_name |
++--------+----------+---------------+---------------+-----------+-------------+
+|      1 | kalpana  | not_available |            10 |         2 | Developer   |
+|      2 | sony     | not_available |            20 |         3 | Tester      |
+|      3 | prajkta  | not_available |            30 |         4 | Teacher     |
+|      4 | priya    | not_available |            40 |         5 | Devloper    |
++--------+----------+---------------+---------------+-----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update emp set  comission=0.10;
+Query OK, 4 rows affected (0.18 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+---------------+---------------+-----------+-------------+
+| emp_id | emp_name | email         | department_id | comission | depart_name |
++--------+----------+---------------+---------------+-----------+-------------+
+|      1 | kalpana  | not_available |            10 |       0.1 | Developer   |
+|      2 | sony     | not_available |            20 |       0.1 | Tester      |
+|      3 | prajkta  | not_available |            30 |       0.1 | Teacher     |
+|      4 | priya    | not_available |            40 |       0.1 | Devloper    |
++--------+----------+---------------+---------------+-----------+-------------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+6.
+
+
+
+
+mysql> select * from emp;
++--------+----------+----------------------+---------------+-----------+-------------+
+| emp_id | emp_name | email                | department_id | comission | depart_name |
++--------+----------+----------------------+---------------+-----------+-------------+
+|      1 | kalpana  | not_available        |            10 |       0.1 | Developer   |
+|      2 | sony     | not_available        |            20 |       0.1 | Tester      |
+|      3 | prajkta  | not_available        |            30 |       0.1 | Teacher     |
+|      4 | priya    | not_available        |            40 |       0.1 | Devloper    |
+|      5 | apurva   | apurvag@gmail.com    |            80 |        30 | Cloud       |
+|      6 | neha     | neha12@gmail.com     |            70 |        79 | Azure       |
+|      7 | Dipali   | Depali1234@gmail.com |            80 |        50 | Google      |
++--------+----------+----------------------+---------------+-----------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> update emp set email='not_available' where department_id=80;
+Query OK, 2 rows affected (0.12 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+------------------+---------------+-----------+-------------+
+| emp_id | emp_name | email            | department_id | comission | depart_name |
++--------+----------+------------------+---------------+-----------+-------------+
+|      1 | kalpana  | not_available    |            10 |       0.1 | Developer   |
+|      2 | sony     | not_available    |            20 |       0.1 | Tester      |
+|      3 | prajkta  | not_available    |            30 |       0.1 | Teacher     |
+|      4 | priya    | not_available    |            40 |       0.1 | Devloper    |
+|      5 | apurva   | not_available    |            80 |        30 | Cloud       |
+|      6 | neha     | neha12@gmail.com |            70 |        79 | Azure       |
+|      7 | Dipali   | not_available    |            80 |        50 | Google      |
++--------+----------+------------------+---------------+-----------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> insert into emp values(8,'shweta','shwetap@gmail.com',80,20,'Azure'),(9,'Anjali','Anjali4@gmail.com',90,20,'Bjaj');
+Query OK, 2 rows affected (0.21 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+-------------------+---------------+-----------+-------------+
+| emp_id | emp_name | email             | department_id | comission | depart_name |
++--------+----------+-------------------+---------------+-----------+-------------+
+|      1 | kalpana  | not_available     |            10 |       0.1 | Developer   |
+|      2 | sony     | not_available     |            20 |       0.1 | Tester      |
+|      3 | prajkta  | not_available     |            30 |       0.1 | Teacher     |
+|      4 | priya    | not_available     |            40 |       0.1 | Devloper    |
+|      5 | apurva   | not_available     |            80 |        30 | Cloud       |
+|      6 | neha     | neha12@gmail.com  |            70 |        79 | Azure       |
+|      7 | Dipali   | not_available     |            80 |        50 | Google      |
+|      8 | shweta   | shwetap@gmail.com |            80 |        20 | Azure       |
+|      9 | Anjali   | Anjali4@gmail.com |            90 |        20 | Bjaj        |
++--------+----------+-------------------+---------------+-----------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> update emp set email='not_available' where department_id=80 and comission=20;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+-------------------+---------------+-----------+-------------+
+| emp_id | emp_name | email             | department_id | comission | depart_name |
++--------+----------+-------------------+---------------+-----------+-------------+
+|      1 | kalpana  | not_available     |            10 |       0.1 | Developer   |
+|      2 | sony     | not_available     |            20 |       0.1 | Tester      |
+|      3 | prajkta  | not_available     |            30 |       0.1 | Teacher     |
+|      4 | priya    | not_available     |            40 |       0.1 | Devloper    |
+|      5 | apurva   | not_available     |            80 |        30 | Cloud       |
+|      6 | neha     | neha12@gmail.com  |            70 |        79 | Azure       |
+|      7 | Dipali   | not_available     |            80 |        50 | Google      |
+|      8 | shweta   | not_available     |            80 |        20 | Azure       |
+|      9 | Anjali   | Anjali4@gmail.com |            90 |        20 | Bjaj        |
++--------+----------+-------------------+---------------+-----------+-------------+
+9 rows in set (0.00 sec)
+
+
+7.
+mysql> update emp set email='not_available' where depart_name='Accounting';
+Query OK, 2 rows affected (0.16 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from emp;
++--------+----------+-------------------+---------------+-----------+-------------+
+| emp_id | emp_name | email             | department_id | comission | depart_name |
++--------+----------+-------------------+---------------+-----------+-------------+
+|      1 | kalpana  | not_available     |            10 |       0.1 | Developer   |
+|      2 | sony     | not_available     |            20 |       0.1 | Tester      |
+|      3 | prajkta  | not_available     |            30 |       0.1 | Teacher     |
+|      4 | priya    | not_available     |            40 |       0.1 | Devloper    |
+|      5 | apurva   | not_available     |            80 |        30 | Cloud       |
+|      6 | neha     | neha12@gmail.com  |            70 |        79 | Azure       |
+|      7 | Dipali   | not_available     |            80 |        50 | Google      |
+|      8 | shweta   | not_available     |            80 |        20 | Azure       |
+|      9 | Anjali   | Anjali4@gmail.com |            90 |        20 | Bjaj        |
+|     10 | kalpanab | not_available     |            30 |        34 | Accounting  |
+|     11 | shrutika | shrukam@gmail.com |            70 |        74 | operations  |
+|     12 | revati   | not_available     |            90 |        94 | Accounting  |
++--------+----------+-------------------+---------------+-----------+-------------+
